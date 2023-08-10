@@ -16,7 +16,7 @@ local function equipWithInterval(player)
     end
     
     local numToolsPerSet = 20
-    local interval = 10
+    local interval = 5
     local currentIndex = 1
     
     while true do
