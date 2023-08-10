@@ -1,4 +1,4 @@
-local function equipAndUnequipTools(player)
+local function equipWithInterval(player)
     local backpack = player.Backpack
     if not backpack then
         return
@@ -15,14 +15,27 @@ local function equipAndUnequipTools(player)
         return -- No tools in the backpack
     end
     
+    local numToolsPerSet = 20
+    local interval = 1
     local currentIndex = 1
-    local numToolsToEquip = 10 -- Change this number to the desired amount
     
-    for i = 1, numToolsToEquip do
-        tools[currentIndex].Parent = player.Character
-        wait(0.1) -- Adjust the wait time to control how long the tool is equipped
-        tools[currentIndex].Parent = backpack
-    
-        currentIndex = currentIndex % #tools + 1
+    while true do
+        for i = 1, numToolsPerSet do
+            local toolIndex = (currentIndex + i - 1) % #tools + 1
+            tools[toolIndex].Parent = player.Character
+        end
+        
+        wait(0.00000000000000001)-- Adjust the wait time if needed
+        
+        for i = 1, numToolsPerSet do
+            local toolIndex = (currentIndex + i - 1) % #tools + 1
+            tools[toolIndex].Parent = backpack
+        end
+        
+        currentIndex = (currentIndex + interval) % #tools
+       
     end
 end
+
+local player = game.Players.LocalPlayer -- Change this to the player you want to equip tools for
+equipWithInterval(player)
