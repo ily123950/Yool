@@ -16,7 +16,7 @@ local function equipWithInterval(player)
     end
     
     local numToolsPerSet = 20
-    local interval = 30
+    local interval = 4
     local currentIndex = 1
     
     while true do
@@ -25,7 +25,7 @@ local function equipWithInterval(player)
             tools[toolIndex].Parent = player.Character
         end
         
-        wait(0.0000000000000000000000000000001)-- Adjust the wait time if needed
+        wait(0.00000000000000000000001)-- Adjust the wait time if needed
         
         for i = 1, numToolsPerSet do
             local toolIndex = (currentIndex + i - 1) % #tools + 1
